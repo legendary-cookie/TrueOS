@@ -4,7 +4,6 @@
 #include <stdbool.h>
 
 #include <kernel/tty.h>
-#include <kernel/io.h>
 
 static inline bool are_interrupts_enabled()
 {
