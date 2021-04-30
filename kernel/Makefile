@@ -67,6 +67,9 @@ $(ARCHDIR)/crtbegin.o $(ARCHDIR)/crtend.o:
 .S.o:
 	$(CC) -MD -c $< -o $@ $(CFLAGS) $(CPPFLAGS)
 
+.asm.o:
+	nasm -felf32 -c $< -o $@
+
 clean:
 	rm -f myos.kernel
 	rm -f $(OBJS) *.o */*.o */*/*.o
