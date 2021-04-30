@@ -1,11 +1,18 @@
 #include <kernel/keyboard_map.h>
 #include <stdint.h>
+#include <stdio.h>
+
 #define KEYBOARD_DATA_PORT 0x60
 #define KEYBOARD_STATUS_PORT 0x64
 #define ENTER_KEY_CODE 0x1C
 #define IDT_SIZE 256
 #define INTERRUPT_GATE 0x8e
 
+/* video memory begins at address 0xb8000 */
+char *vidptr = (char *)0xb8000;
+/* current cursor location */
+unsigned int current_loc = 0;
+/* Get the keyboard layout map */
 extern unsigned char keyboard_map[128];
 
 static inline void outb(uint16_t port, uint8_t val) {
