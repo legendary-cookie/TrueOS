@@ -27,4 +27,5 @@ void kernel_main(void) {
     printf("Interrupts are disabled\n");
   }
   printf("OS Started!\n");
+  while(1){}
 }

@@ -1,4 +1,5 @@
 #include <stdint.h>
+#include <stdio.h>
 
 static inline void outb(uint16_t port, uint8_t val) {
   asm volatile("outb %0, %1" : : "a"(val), "Nd"(port));
@@ -206,73 +207,89 @@ void idt_init(void) {
 }
 
 void irq0_handler(void) {
+  printf("irq0_handler\n");
   outb(0x20, 0x20); // EOI
 }
 
 void irq1_handler(void) {
+  printf("irq1_handler\n");
   outb(0x20, 0x20); // EOI
 }
 
 void irq2_handler(void) {
+  printf("irq1_handler\n");
   outb(0x20, 0x20); // EOI
 }
 
 void irq3_handler(void) {
+  printf("irq3_handler\n");
   outb(0x20, 0x20); // EOI
 }
 
 void irq4_handler(void) {
+  printf("irq4_handler\n");
   outb(0x20, 0x20); // EOI
 }
 
 void irq5_handler(void) {
+  printf("irq5_handler\n");
   outb(0x20, 0x20); // EOI
 }
 
 void irq6_handler(void) {
+  printf("irq6_handler\n");
   outb(0x20, 0x20); // EOI
 }
 
 void irq7_handler(void) {
+  printf("irq7_handler\n");
   outb(0x20, 0x20); // EOI
 }
 
 void irq8_handler(void) {
+  printf("irq8_handler\n");
   outb(0xA0, 0x20);
   outb(0x20, 0x20); // EOI
 }
 
 void irq9_handler(void) {
+  printf("irq9_handler\n");
   outb(0xA0, 0x20);
   outb(0x20, 0x20); // EOI
 }
 
 void irq10_handler(void) {
+  printf("irq10_handler\n");
   outb(0xA0, 0x20);
   outb(0x20, 0x20); // EOI
 }
 
 void irq11_handler(void) {
+  printf("irq11_handler\n");
   outb(0xA0, 0x20);
   outb(0x20, 0x20); // EOI
 }
 
 void irq12_handler(void) {
+  printf("irq12_handler\n");
   outb(0xA0, 0x20);
   outb(0x20, 0x20); // EOI
 }
 
 void irq13_handler(void) {
+  printf("irq13_handler\n");
   outb(0xA0, 0x20);
   outb(0x20, 0x20); // EOI
 }
 
 void irq14_handler(void) {
+  printf("irq14_handler\n");
   outb(0xA0, 0x20);
   outb(0x20, 0x20); // EOI
 }
 
 void irq15_handler(void) {
+  printf("irq15_handler\n");
   outb(0xA0, 0x20);
   outb(0x20, 0x20); // EOI
 }
