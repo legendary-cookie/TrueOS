@@ -28,7 +28,10 @@ _start:
 	
 	# Call the global constructors.
 	call _init
-
+	
+	# Load GDT
+	call load_gdt
+	
 	# Transfer control to the kernel main.
 	call kernel_main
 

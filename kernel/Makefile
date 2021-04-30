@@ -38,6 +38,7 @@ $(KERNEL_OBJS) \
 $(ARCHDIR)/crtend.o \
 $(ARCHDIR)/crtn.o \
 $(ARCHDIR)/irqhandlers.o \
+$(ARCHDIR)/gdt.o \
 
 LINK_LIST=\
 $(LDFLAGS) \
@@ -48,9 +49,10 @@ $(LIBS) \
 $(ARCHDIR)/crtend.o \
 $(ARCHDIR)/crtn.o \
 $(ARCHDIR)/irqhandlers.o \
+$(ARCHDIR)/gdt.o \
 
 .PHONY: all clean install install-headers install-kernel
-.SUFFIXES: .o .c .S
+.SUFFIXES: .o .c .S .asm
 
 all: myos.kernel
 
@@ -68,7 +70,7 @@ $(ARCHDIR)/crtbegin.o $(ARCHDIR)/crtend.o:
 	$(CC) -MD -c $< -o $@ $(CFLAGS) $(CPPFLAGS)
 
 .asm.o:
-	nasm -felf32 -c $< -o $@
+	nasm -felf32 $< -o $@
 
 clean:
 	rm -f myos.kernel
