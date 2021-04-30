@@ -33,6 +33,7 @@
   dq gdt_null
   codeseg equ gdt_code - gdt_null
   dataseg equ gdt_data - gdt_null
+  global load_gdt:function
   load_gdt:
   cli
   lgdt [gdt_desc]

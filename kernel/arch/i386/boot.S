@@ -29,7 +29,7 @@ _start:
 	# Call the global constructors.
 	call _init
 	
-	# Load GDT
+	# Load GDT (global function in gdt.asm)
 	call load_gdt
 	
 	# Transfer control to the kernel main.
