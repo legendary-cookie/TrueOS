@@ -1,12 +1,12 @@
-  jmp load_gdt
+jmp load_gdt
  
 ;global descriptor table
-  gdt:
+gdt:
  
-  gdt_null:
+gdt_null:
   dq 0
  
-  gdt_code:
+gdt_code:
   dw 0xFFFF
   dw 0
  
@@ -15,7 +15,7 @@
   db 11001111b
   db 0
  
-  gdt_data:
+gdt_data:
   dw 0xFFFF
   dw 0
  
@@ -24,21 +24,21 @@
   db 11001111b
   db 0
  
-  gdt_end:
+gdt_end:
  
-  gdt_desc:
+gdt_desc:
  
-  gdt_size:
+gdt_size:
   dw gdt_end - gdt - 1
   dq gdt_null
   codeseg equ gdt_code - gdt_null
   dataseg equ gdt_data - gdt_null
-  global load_gdt:function
-  load_gdt:
+global load_gdt:function
+load_gdt:
   cli
   lgdt [gdt_desc]
   jmp codeseg:reload_cs
-  reload_cs:
+reload_cs:
   mov ax, dataseg
   mov ds, ax
   mov es, ax
