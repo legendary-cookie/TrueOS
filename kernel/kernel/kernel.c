@@ -4,6 +4,7 @@
 #include <stdint.h>
 
 #include <kernel/interrupts.h>
+#include <kernel/keyboard.h>
 #include <kernel/tty.h>
 
 static inline bool are_interrupts_enabled() {
@@ -19,6 +20,7 @@ void kernel_main(void) {
   printf("Hello, World!\n");
   printf("OS Starting!\n");
   idt_init();
+  kb_init();
   if (are_interrupts_enabled()) {
     printf("Interrupts are enabled\n");
   } else {
