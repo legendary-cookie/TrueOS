@@ -211,13 +211,21 @@ void irq0_handler(void) {
   outb(0x20, 0x20); // EOI
 }
 
+/*
+ * Keyboard:
+ * Fires on both key pressed and key released
+ * Example: If the scan_code was 0x04 the key 3 was pressed, however
+ * 	if it was 0x84 the key 3 was released
+ */
 void irq1_handler(void) {
   printf("irq1_handler\n");
+  unsigned char scan_code = inb(0x60);
+  
   outb(0x20, 0x20); // EOI
 }
 
 void irq2_handler(void) {
-  printf("irq1_handler\n");
+  printf("irq2_handler\n");
   outb(0x20, 0x20); // EOI
 }
 

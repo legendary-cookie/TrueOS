@@ -33,5 +33,5 @@ static inline uint8_t inb(uint16_t port) {
 
 void kb_init(void) {
   /* 0xFD is 11111101 - enables only IRQ1 (keyboard)*/
-  outb(0x21, 0xFD);
+  //outb(0x21, 0xFD);
 }
