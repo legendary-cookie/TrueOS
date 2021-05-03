@@ -10,12 +10,6 @@
 extern void enable_A20();
 static inline void outb(uint16_t port, uint8_t val) {
   asm volatile("outb %0, %1" : : "a"(val), "Nd"(port));
-  /* There's an outb %al, $imm8  encoding, for compile-time constant port
-   * numbers that fit in 8b.  (N constraint). Wider immediate constants would be
-   * truncated at assemble-time (e.g. "i" constraint). The  outb  %al, %dx
-   * encoding is the only option for all other cases.
-   * %1 expands to %dx because  port  is a uint16_t.  %w1 could be used if we
-   * had the port number a wider C type */
 }
 
 static inline uint8_t inb(uint16_t port) {
@@ -33,7 +27,13 @@ static inline bool are_interrupts_enabled() {
 }
 
 static inline void disable_interrupts() { asm volatile("cli"); }
-
+static inline void enable_protected_mode() {
+  void NMI_disable();
+  disable_interrupts();
+  asm volatile("mov %eax, %cr0\n\t"
+               "mov %eax,1\n\t"
+               "mov %cr0, %eax");
+}
 int check_a20() { return 0; }
 
 void NMI_enable() { outb(0x70, inb(0x70) & 0x7F); }
@@ -52,8 +52,7 @@ void kernel_main(void) {
   } else {
     printf("A20 line already set\n");
   }
-  NMI_disable();
-  disable_interrupts();
+  enable_protected_mode();
   if (are_interrupts_enabled()) {
     printf("Interrupts are enabled\n");
   } else {
