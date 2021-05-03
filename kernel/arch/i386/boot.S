@@ -31,7 +31,7 @@ _start:
 	
 	# Load GDT (global function in gdt.asm)
 	call load_gdt
-	
+
 	# Transfer control to the kernel main.
 	call kernel_main
 

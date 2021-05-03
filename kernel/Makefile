@@ -39,6 +39,8 @@ $(ARCHDIR)/crtend.o \
 $(ARCHDIR)/crtn.o \
 $(ARCHDIR)/irqhandlers.o \
 $(ARCHDIR)/gdt.o \
+$(ARCHDIR)/protected.o \
+
 
 LINK_LIST=\
 $(LDFLAGS) \
@@ -50,6 +52,8 @@ $(ARCHDIR)/crtend.o \
 $(ARCHDIR)/crtn.o \
 $(ARCHDIR)/irqhandlers.o \
 $(ARCHDIR)/gdt.o \
+$(ARCHDIR)/protected.o \
+
 
 .PHONY: all clean install install-headers install-kernel
 .SUFFIXES: .o .c .S .asm
